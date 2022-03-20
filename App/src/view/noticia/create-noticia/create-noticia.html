@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='noticia/create-noticia/create-noticia.css') }}">
+    {% endblock %}
+
+    {% block js %}
+    <script src="{{ url_for('static', filename='noticia/create-noticia/create-noticia.js') }}"></script>
+    {% endblock %}}
+</head>
+<body>
+{% include 'header/header.html' %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-12" style="display: flex; align-items: center;">
+            <a class="btn btn-dark" type="button" style="margin-right: 1rem;" href="{{ url_for('noticia.index') }}">Voltar</a>
+            <h1 style="color: black;">Criar notícia</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" style="margin-bottom: 1rem;">
+            <label>Nome</label>
+            <input class="form-control" type="text" id="noticia_name" placeholder="Nome da notícia">
+        </div>
+
+        <div class="col-12" style="margin-bottom: 1rem;">
+            <label>Assuntos</label>
+            {% if data.stored_assuntos %}
+            {% for assunto in data.stored_assuntos %}
+            <div class="assunto-item" style="display: flex; align-items: center; justify-content: space-between;">
+                <input type="checkbox" id="assunto_{{ assunto.id }}" name="escolher_assunto">
+
+                <div class="assunto-name">
+                    <label>Assunto</label>
+                    <input class="form-control" type="text" id="{{ assunto.name }}"
+                           value="{{ assunto.name }}" name="nome_assunto" disabled>
+                </div>
+                <div class="assunto-classificacao">
+                    <label>Classificação</label>
+                    <input class="form-control" type="text" id="{{ assunto.id }}_classificacao"
+                           name="classificacao_assunto">
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="col-12" style="margin-bottom: 1rem;">
+            <label>Conteúdo</label>
+            <textarea class="form-control" rows="8" type="text" id="noticia_steps" name="etapas"
+                      placeholder="Exemplo: Jogador sofre lesão ao..."></textarea>
+        </div>
+
+        <div class="col-xl-12">
+            <button type="submit" class="button submit-button" style="width: 100%;" onclick="createNoticia()">Criar</button>
+        </div>
+    </div>
+    </form>
+</main>
+<div>
+    
+</div>
+
+</body>
+</html>

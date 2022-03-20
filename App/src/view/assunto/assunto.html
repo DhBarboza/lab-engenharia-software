@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <title>{{ title }}</title>
+
+    {% block css %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='assunto/assunto.css') }}"
+    />
+    {% endblock %} {% block js %}
+    <script src="{{ url_for('static', filename='assunto/assunto.js') }}"></script>
+    {% endblock %}}
+  </head>
+  <body>
+    {% include 'header/header.html' %}
+
+    <main class="container">
+      <div class="row">
+        <div
+          class="col-12"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <h1>Meus assuntos</h1>
+          <a
+            class="btn btn-primary"
+            href="{{ url_for('assunto.create_assuntos') }}"
+            >Adicionar assuntos</a
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Criado em</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% if data.assuntos %} {% for assunto in data.assuntos %}
+              <tr id="assunto_{{assunto.id}}">
+                <td>{{ assunto.id }}</td>
+                <td>{{ assunto.name }}</td>
+                <td>{{ assunto.created_at }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="button btn-sm delete-button"
+                    onclick="deleteObj('{{ assunto.id }}')"
+                  >
+                    Remover
+                  </button>
+                  <button
+                    type="button"
+                    class="button btn-sm btn-primary"
+                    onclick="window.location.href = '/assuntos/edit/{{ assunto.id }}'"
+                  >
+                    Editar
+                  </button>
+                </td>
+              </tr>
+              {% endfor %} {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    {% include 'footer/footer.html' %}
+  </body>
+</html>

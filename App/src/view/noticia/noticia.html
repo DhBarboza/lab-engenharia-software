@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <title>Notícias</title>
+
+    {% block css %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='noticia/noticia.css') }}"
+    />
+    {% endblock %} {% block js %}
+    <script src="{{ url_for('static', filename='noticia/noticia.js') }}"></script>
+    {% endblock %}}
+  </head>
+  <body>
+    {% include 'header/header.html' %}
+
+    <main class="container">
+      <div class="row">
+        <div
+          class="col-12"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <h1>{{ title }}</h1>
+          <a
+            class="btn btn-primary"
+            href="{{ url_for('noticia.create_noticia') }}"
+            >Criar noticia</a
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card-wrapper">
+            {% if noticias %} {% for noticia in noticias %}
+            <div class="card" id="noticia_{{noticia.id}}">
+              <div class="card-title">
+                <h4>{{ noticia.name }}</h4>
+              </div>
+              <div class="card-content">
+                <div class="assuntos">
+                  <h5>Assuntos</h5>
+                  {% for assunto in noticia.assuntos %}
+                  <p>{{assunto.name}}</p>
+                  {% endfor %}
+                </div>
+
+                <div class="conteudo">
+                  <h5>Conteúdo</h5>
+                  <p>{{ noticia.steps }}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %} {% endif %}
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {% include 'footer/footer.html' %}
+  </body>
+</html>

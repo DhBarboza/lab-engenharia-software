@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <title>{{ title }}</title>
+
+    {% block css %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='dashboard/dashboard.css') }}"
+    />
+    {% endblock %}
+  </head>
+  <body>
+    {% include 'header/header.html' %}
+
+    <main class="container">
+      <div class="row">
+        <div
+          class="col-12"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <h1>Notícias</h1>
+          <a class="btn btn-primary" href="/noticias">Gerenciar notícias</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card-wrapper">
+            {% if data.noticias %} {% for noticia in data.noticias %}
+            <div class="card">
+              <div class="card-title">
+                <h4>{{ noticia.name }}</h4>
+              </div>
+              <div class="card-content">
+                <div class="assuntos">
+                  <h5>Assunto</h5>
+                  {% for assunto in noticia.assuntos %}
+                  <p>{{assunto.name}}</p>
+                  {% endfor %}
+                </div>
+
+                <div class="preparation">
+                  <h5>Conteúdo</h5>
+                  <p>{{ noticia.steps }}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %} {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div
+          class="col-12"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <h1>Assuntos</h1>
+          <a class="btn btn-primary" href="/assuntos">Gerenciar Assuntos</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          {% if data.assuntos %} {% for assunto in data.assuntos %}
+          <span class="label label-colorful">{{ assunto.name }}</span>
+          {% endfor %} {% endif %}
+        </div>
+      </div>
+    </main>
+
+    {% include 'footer/footer.html' %}
+  </body>
+</html>

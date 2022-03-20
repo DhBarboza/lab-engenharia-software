@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+
+    {% block css %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='assunto/edit-assunto/edit-assunto.css') }}"
+    />
+    {% endblock %} {% block js %}
+    <script src="{{ url_for('static', filename='assunto/edit-assunto/edit-assunto.js') }}"></script>
+    {% endblock %}}
+  </head>
+  <body>
+    {% include 'header/header.html' %}
+
+    <main class="container">
+      <div class="row">
+        <div class="col-12" style="display: flex; align-items: center">
+          <a
+            type="button"
+            style="margin-right: 1rem"
+            href="{{ url_for('assunto.index') }}"
+            >Voltar</a
+          >
+          <h1>Editar assunto {{ assunto.name }}</h1>
+        </div>
+      </div>
+      <form method="PUT">
+        <div class="row">
+          <div class="col-12" style="display: flex; align-items: center">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nome do assunto"
+              id="assunto_{{ assunto.id }}"
+              style="margin: 10px"
+              value="{{ assunto.name }}"
+            />
+            <button
+              type="button"
+              class="button submit-button"
+              id="update_assunto"
+              onclick="updateAssunto('{{assunto.id}}')"
+            >
+              Editar
+            </button>
+          </div>
+        </div>
+      </form>
+    </main>
+
+    {% include 'footer/footer.html' %}
+  </body>
+</html>

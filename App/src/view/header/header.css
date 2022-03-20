@@ -1,0 +1,47 @@
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    color: white;
+    background-color: #1e88e5;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: .5rem 1rem;
+}
+
+.brand {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    color: #fff;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+.nav-item {
+    padding-right: .5rem;
+    padding-left: .5rem;
+    color: white;
+}
+
+.nav-link {
+    color: #fff;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}

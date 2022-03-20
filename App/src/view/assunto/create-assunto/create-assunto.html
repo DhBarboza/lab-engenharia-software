@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <title>{{ title }}</title>
+
+    {% block css %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='assunto/create-assunto/create-assunto.css') }}"
+    />
+    {% endblock %} {% block js %}
+    <script src="{{ url_for('static', filename='assunto/create-assunto/create-assunto.js') }}"></script>
+    {% endblock %}}
+  </head>
+  <body>
+    {% include 'header/header.html' %}
+
+    <main class="container">
+      <div class="row">
+        <div class="col-12" style="display: flex; align-items: center">
+          <a
+            class="btn btn-dark"
+            type="button"
+            style="margin-right: 1rem"
+            href="{{ url_for('assunto.index') }}"
+            >Voltar</a
+          >
+          <h1>Adicionar assuntos</h1>
+        </div>
+      </div>
+      <form method="POST">
+        <div class="row">
+          <div class="col-12" style="display: flex; align-items: center">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nome do assunto"
+              id="assunto-name"
+              style="margin: 10px"
+            />
+            <button
+              type="button"
+              class="button"
+              id="add-assunto"
+              onclick="addAssunto()"
+            >
+              Adicionar
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <h4>Assuntos pré-cadastrados:</h4>
+            <p id="listAssuntos">Nenhum</p>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+          <div class="col-12">
+            <button
+              type="button"
+              class="button submit-button"
+              id="submit-assuntos"
+              style="width: 100%"
+              onclick="create()"
+              disabled
+            >
+              Criar assuntos
+            </button>
+          </div>
+        </div>
+      </form>
+    </main>
+
+    {% include 'footer/footer.html' %}
+  </body>
+</html>
