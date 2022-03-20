@@ -1,7 +1,7 @@
 # Configurações:
 Siga as orientações a seguir para executar o projeto:
 
-## Requqerimentos:
+## Requerimentos:
 - Linguagem de programação Python (Versão 3.6 ou Superior).
 - Banco de Dados MySQL ou outro a sua preferência.
 
