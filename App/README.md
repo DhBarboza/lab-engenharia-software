@@ -5,6 +5,11 @@ Siga as orientações a seguir para executar o projeto:
 - Linguagem de programação Python (Versão 3.6 ou Superior).
 - Banco de Dados MySQL ou outro a sua preferência.
 
+## Baixando os arquivos em seu computador:
+Execute os seguintes comandos em seu terminal:
+- git clone https://github.com/DhBarboza/lab-engenharia-software.git
+- cd App
+
 ## Instalar Virtualenv:
 - pip install virtualenv
 
